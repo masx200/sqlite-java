@@ -24,6 +24,8 @@ import java.util.function.Consumer
 //import lombok.NonNull;
 
 interface DB : AutoCloseable {
+
+
     fun getAsyncEventBus(identifier: String): AsyncEventBus
 
     override fun close()
@@ -126,5 +128,9 @@ interface DB : AutoCloseable {
         fun connect(path: String): DB {
             return Core(path)
         }
+
+        @JvmField
+        val sqlIdentifiers = listOf("select", "create", "alter", "delete", "drop", "insert", "update")
+
     }
 }

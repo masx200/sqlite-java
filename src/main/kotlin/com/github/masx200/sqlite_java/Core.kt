@@ -1071,7 +1071,8 @@ internal class Core(var path: String) : DB {
         val builder = StringBuilder(ids.toList().toString())
 //        println(ids.toList().toString())
         builder.deleteCharAt(0).deleteCharAt(builder.length - 1)
-        return deleteByPredicate<T>(tClass, "id in(?)", builder.toString())
+//        println(builder)
+        return deleteByPredicate<T>(tClass, "id in(?)", builder)
     }
 
     override fun <T : DataSupport<T>> deleteAll(tClass: Class<T>): List<String> {
@@ -1111,6 +1112,7 @@ internal class Core(var path: String) : DB {
     override fun <T : DataSupport<T>> findByVarargId(tClass: Class<T>, vararg ids: Long): MutableList<T> {
         val builder = StringBuilder(ids.toList().toString())
         builder.deleteCharAt(0).deleteCharAt(builder.length - 1)
+
         return findByConsumer<T>(tClass) { options: Options? -> options!!.where("id in(?)", builder) }
     }
 
