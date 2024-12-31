@@ -1,31 +1,37 @@
-[![](https://jitpack.io/v/artbits/sqlite-java.svg)](https://jitpack.io/#artbits/sqlite-java)
+[![](https://jitpack.io/v/masx200/sqlite-java.svg)](https://jitpack.io/#masx200/sqlite-java)
 [![](https://img.shields.io/badge/JDK-8%20%2B-%23DD964D)](https://jdk.java.net/)
 [![](https://img.shields.io/badge/license-Apache--2.0-%234377BF)](#license)
 
-
 ## SQLite-Java
-``SQLite-Java`` is a Java ORM for SQLite databases. Using ``SQLite-JDBC`` as the driver at the bottom. It provides simple and efficient APIs without writing a large number of SQL statements. You only need to know the basics of SQL to get started.
 
+`SQLite-Java` is a Java ORM for SQLite databases. Using `SQLite-JDBC` as the
+driver at the bottom. It provides simple and efficient APIs without writing a
+large number of SQL statements. You only need to know the basics of SQL to get
+started.
 
 ## Features
- + Support for automatic table creation and addition columns.
- + Provide APIs for adding, deleting, modifying, and querying.
- + Provides aggregate function APIs.
- + APIs are simple, elegant and efficient to use.
 
+- Support for automatic table creation and addition columns.
+- Provide APIs for adding, deleting, modifying, and querying.
+- Provides aggregate function APIs.
+- APIs are simple, elegant and efficient to use.
 
 ## Download
+
 Gradle:
+
 ```groovy
 repositories {
     maven { url 'https://www.jitpack.io' }
 }
 
 dependencies {
-    implementation 'com.github.artbits:sqlite-java:1.0.6'
+    implementation 'com.github.masx200:sqlite-java:2.2.1'
 }
 ```
+
 Maven:
+
 ```xml
 <repository>
     <id>jitpack.io</id>
@@ -33,15 +39,18 @@ Maven:
 </repository>
 
 <dependency>
-    <groupId>com.github.artbits</groupId>
+    <groupId>com.github.masx200</groupId>
     <artifactId>sqlite-java</artifactId>
-    <version>1.0.6</version>
+    <version>2.2.1</version>
 </dependency>
 ```
 
-
 ## Usage
-Let Java classes be mapped into database tables. extends ``DataSupport`` class. The fields ``id``, ``createdAt``, and ``updatedAt`` are internal fields, please read them only when using them.
+
+Let Java classes be mapped into database tables. extends `DataSupport` class.
+The fields `id`, `createdAt`, and `updatedAt` are internal fields, please read
+them only when using them.
+
 ```java
 public class User extends DataSupport<User> {
     public String name;
@@ -66,12 +75,14 @@ public class Book extends DataSupport<Book> {
 ```
 
 Connect to the database and load tables (automatically add tables and columns).
+
 ```java
 DB db = DB.connect("database/example.db");
 db.tables(User.class, Book.class);
 ```
 
 Insert data.
+
 ```java
 // No need to set ID, ID will increase automatically when inserting data.
 User user = new User(u -> {u.name = "Lake"; u.age = 25; u.vip = true;});
@@ -80,6 +91,7 @@ user.printJson();
 ```
 
 Update data.
+
 ```java
 // Update data by id.
 db.update(new User(u -> {
@@ -92,6 +104,7 @@ db.update(new User(u -> u.vip = true), "age < ?", 50);
 ```
 
 Delete data.
+
 ```java
 // Delete all data in this table.
 db.deleteAll(User.class);
@@ -107,6 +120,7 @@ db.delete(User.class, "name = ? && vip = ?", "Lake", false);
 ```
 
 Query data.
+
 ```java
 // Find one by ID.
 User user1 = db.findOne(User.class, 1L);
@@ -145,6 +159,7 @@ List<User> users4 = db.find(User.class, options -> options
 ```
 
 Aggregate function.
+
 ```java
 long count1 = db.count(User.class);
 long count2 = db.count(User.class, "vip = ?", true);
@@ -162,15 +177,15 @@ int min1 = db.min(User.class, "age").intValue();
 int min2 = db.min(User.class, "age", "vip = ?", true).intValue();
 ```
 
-
-
 ## Links
-+ Thanks: 
-    + [SQLite-JDBC](https://github.com/xerial/sqlite-jdbc)
-    + [QuickIO](https://github.com/artbits/quickio)
 
+- Thanks:
+  - [SQLite-JDBC](https://github.com/xerial/sqlite-jdbc)
+  - [QuickIO](https://github.com/artbits/quickio)
+  - [sqlite-java](https://github.com/artbits/sqlite-java)
 
 ## License
+
 ```
 Copyright 2023 Zhang Guanhu
 
@@ -185,3 +200,4 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+```

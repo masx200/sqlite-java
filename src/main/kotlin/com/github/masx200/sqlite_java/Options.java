@@ -14,12 +14,14 @@
  * limitations under the License.
  */
 
-package com.github.artbits.jsqlite;
+package com.github.masx200.sqlite_java;
 
 import java.util.Arrays;
 
 public final class Options {
 
+    public final static String ASC = "asc";
+    public final static String DESC = "desc";
     String selectColumns;
     String wherePredicate;
     String groupColumns;
@@ -27,13 +29,8 @@ public final class Options {
     Long limitSize;
     Long offsetSize;
 
-
-    public final static String ASC = "asc";
-    public final static String DESC = "desc";
-
-
-    Options() { }
-
+    Options() {
+    }
 
     public Options select(String... columns) {
         StringBuilder builder = new StringBuilder(Arrays.toString(columns));
@@ -42,12 +39,10 @@ public final class Options {
         return this;
     }
 
-
     public Options where(String predicate) {
         wherePredicate = predicate.replace("&&", "and").replace("||", "or");
         return this;
     }
-
 
     public Options where(String predicate, Object... objects) {
         if (predicate != null) {
@@ -58,9 +53,12 @@ public final class Options {
                 } else {
                     String s = String.valueOf(o);
                     switch (s) {
-                        case "true": return "1";
-                        case "false": return "0";
-                        default: return s;
+                        case "true":
+                            return "1";
+                        case "false":
+                            return "0";
+                        default:
+                            return s;
                     }
                 }
             }).toArray());
@@ -68,30 +66,25 @@ public final class Options {
         return this;
     }
 
-
     public Options group(String columns) {
         groupColumns = columns;
         return this;
     }
-
 
     public Options order(String columns, String mode) {
         orderColumns = columns + " " + mode;
         return this;
     }
 
-
     public Options order(String columns) {
         orderColumns = columns;
         return this;
     }
 
-
     public Options limit(long size) {
         limitSize = size;
         return this;
     }
-
 
     public Options offset(long size) {
         offsetSize = size;

@@ -14,53 +14,84 @@
  * limitations under the License.
  */
 
-package com.github.artbits.jsqlite;
+package com.github.masx200.sqlite_java;
 
 import java.util.Optional;
 import java.util.function.Consumer;
 
-import static com.github.artbits.jsqlite.Core.gson;
+import static com.github.masx200.sqlite_java.Core.gson;
 
-public class DataSupport<T> {
+public class DataSupport<T extends DataSupport<T>> {
+    @Column(autoIncrement = true, primaryKey = true)
+    public Long id;
+    public Long createdAt;
+    public Long updatedAt;
 
-    Long id;
-    Long createdAt;
-    Long updatedAt;
+    public DataSupport() {
+    }
 
-
+    @SuppressWarnings("unchecked")
     public DataSupport(Consumer<T> consumer) {
+
         Optional.of(consumer).ifPresent(c -> c.accept((T) this));
     }
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Long createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Long getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Long updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    @SuppressWarnings("unchecked")
     public final T set(Consumer<T> consumer) {
         consumer.accept((T) this);
         return (T) this;
     }
 
-
     public final long id() {
         return (id != null) ? id : 0L;
     }
-
 
     public final long createdAt() {
         return (createdAt != null) ? createdAt : 0L;
     }
 
-
     public final long updatedAt() {
         return (updatedAt != null) ? updatedAt : 0L;
     }
-
 
     public final String toJson() {
         return gson.toJson(this);
     }
 
-
     public final void printJson() {
         System.out.println(toJson());
     }
 
+    @Override
+    public String toString() {
+        return "DataSupport{" +
+                "id=" + id +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
 }
