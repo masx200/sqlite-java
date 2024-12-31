@@ -1062,7 +1062,7 @@ internal class Core(var path: String) : DB {
     }
 
     override fun <T : DataSupport<T>> deleteByListId(tClass: Class<T>, ids: List<Long>): List<String> {
-        val builder = StringBuilder(ids.toString())
+        val builder = StringBuilder(ids.toList().toString())
         builder.deleteCharAt(0).deleteCharAt(builder.length - 1)
         return deleteByPredicate<T>(tClass, "id in(?)", builder)
     }
@@ -1103,7 +1103,7 @@ internal class Core(var path: String) : DB {
     }
 
     override fun <T : DataSupport<T>> findByListId(tClass: Class<T>, ids: List<Long>): List<T> {
-        val builder = StringBuilder(ids.toString())
+        val builder = StringBuilder(ids.toList().toString())
         builder.deleteCharAt(0).deleteCharAt(builder.length - 1)
         return findByConsumer<T>(tClass) { options: Options? -> options!!.where("id in(?)", builder) }
     }
