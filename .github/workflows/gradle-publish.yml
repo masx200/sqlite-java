@@ -48,8 +48,8 @@ jobs:
           MAVEN_REPOSITORY: ${{secrets.MAVEN_REPOSITORY}}
           MAVEN_USERNAME: ${{secrets.MAVEN_USERNAME}}
         run: gradle build
-      #      - name: shadowJar with Gradle 8.9
-      #        run: gradle shadowJar
+      #      - name: build with Gradle 8.9
+      #        run: gradle build
       #        env:
       #          MAVEN_PASSWORD: ${{secrets.MAVEN_PASSWORD}}
       #          MAVEN_REPOSITORY: ${{secrets.MAVEN_REPOSITORY}}

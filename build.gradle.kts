@@ -1,6 +1,6 @@
-//import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+//import com.github.jengelman.gradle.plugins.shadow.tasks.build
 
-//import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+//import com.github.jengelman.gradle.plugins.shadow.tasks.build
 
 val artifact_id = "sqlite-java"
 //val ktor_version: String by project
@@ -8,7 +8,7 @@ val logback_version: String by project
 val org_gradle_jvmargs: String by project
 group = "com.github.masx200"
 version = "2.2.1"
-//tasks.named<ShadowJar>("shadowJar") {
+//tasks.named<build>("build") {
 //    // manifest {
 //    //     attributes["Main-Class"] = "com.github.masx200.sqlite_java.IMAGEDOWNLOADERApplicationKt"
 //
