@@ -51,7 +51,7 @@ jobs:
           MAVEN_REPOSITORY: ${{secrets.MAVEN_REPOSITORY}}
           MAVEN_USERNAME: ${{secrets.MAVEN_USERNAME}}
       - name: shadowJar with Gradle 8.9
-        run: gradle shadowJar
+        run: gradle build
         env:
           MAVEN_PASSWORD: ${{secrets.MAVEN_PASSWORD}}
           MAVEN_REPOSITORY: ${{secrets.MAVEN_REPOSITORY}}
@@ -60,8 +60,8 @@ jobs:
       - name: Upload binary
         uses: actions/upload-artifact@v4
         with:
-          name: sqlite-java-all.jar
-          path: build/libs/sqlite-java-*-all.jar
+          name: sqlite-java-.jar
+          path: build/libs/sqlite-java-*.jar
       - name: Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/heads/main')
@@ -69,7 +69,7 @@ jobs:
           tag_name: Continuous-integration-${{ github.sha }}
           #token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
           files: |
-            build/libs/sqlite-java-*-all.jar
+            build/libs/sqlite-java-*.jar
   dependency-submission:
     runs-on: ubuntu-latest
     permissions:
@@ -83,7 +83,7 @@ jobs:
           java-version: "21"
           distribution: "temurin"
 
-      # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
+      # Generates and submits a dependency graph, enabling Dependabot Alerts for  project dependencies.
       # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
       - name: Generate and submit dependency graph
         uses: gradle/actions/dependency-submission@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
