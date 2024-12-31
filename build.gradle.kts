@@ -72,18 +72,18 @@ sourceSets {
         }
     }
 }
-// repositories {
-//     mavenCentral()
-//     gradlePluginPortal()
-//     maven {
-//         url = uri("https://maven.pkg.github.com/masx200/bilibiliclient")
+repositories {
+    mavenCentral()
+    gradlePluginPortal()
+    // maven {
+    //     url = uri("https://maven.pkg.github.com/masx200/bilibiliclient")
 
-//         credentials {
-//             username = System.getenv("MAVEN_USERNAME") ?: ""
-//             password = System.getenv("MAVEN_PASSWORD") ?: ""
-//         }
-//     }
-// }
+    //     credentials {
+    //         username = System.getenv("MAVEN_USERNAME") ?: ""
+    //         password = System.getenv("MAVEN_PASSWORD") ?: ""
+    //     }
+    // }
+}
 repositories {
     maven { url = uri("https://www.jitpack.io") }
 }
