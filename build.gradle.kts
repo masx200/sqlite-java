@@ -92,7 +92,7 @@ dependencies {
     // https://mvnrepository.com/artifact/com.google.guava/guava
     implementation("com.google.guava:guava:33.4.0-jre")
 
-    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.google.code.gson:gson:2.11.0")
     // https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc
     //implementation("org.xerial:sqlite-jdbc:3.47.1.0")
 // https://mvnrepository.com/artifact/org.jetbrains.exposed/exposed-jdbc
