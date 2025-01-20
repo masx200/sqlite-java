@@ -144,7 +144,7 @@ dependencies {
 //<<<<<<< sqlite保存状态
 //    implementation("org.xerial:sqlite-jdbc:3.36.0.3")
 //=======
-    implementation("org.xerial:sqlite-jdbc:3.47.1.0")
+    implementation("org.xerial:sqlite-jdbc:3.48.0.0")
 //>>>>>>> master
     // https://mvnrepository.com/artifact/com.xenomachina/kotlin-argparser
     implementation("com.xenomachina:kotlin-argparser:2.0.7")
