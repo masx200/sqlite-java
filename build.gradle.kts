@@ -99,7 +99,7 @@ dependencies {
     runtimeOnly("org.jetbrains.exposed:exposed-jdbc:0.57.0")
 
     // https://mvnrepository.com/artifact/org.jetbrains.exposed/exposed-core
-    implementation("org.jetbrains.exposed:exposed-core:0.57.0")
+    implementation("org.jetbrains.exposed:exposed-core:0.60.0")
 
 //    implementation("com.github.artbits:sqlite-java:1.0.8")
 }
